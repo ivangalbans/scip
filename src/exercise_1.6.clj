@@ -1,7 +1,8 @@
-(ns exercise-1.6)
+(ns exercise-1.6
+  (:require [common]))
 
 (defn good-enough? [guess x]
-  (< (Math/abs (- (* guess guess) x)) 0.001))
+  (< (Math/abs (- (* guess guess) x)) common/EPS))
 
 (defn average [x y]
   (/ (+ x y) 2))
@@ -9,13 +10,18 @@
 (defn improve [guess x]
   (average guess (/ x guess)))
 
+(def iterations (atom 0))
+
 (defn sqrt-iter [guess x]
+  (swap! iterations inc)
   (if (good-enough? guess x)
     guess
     (sqrt-iter (improve guess x) x)))
 
 (defn sqrt [x]
-  (sqrt-iter 1.0 x))
+  (reset! iterations 0)
+  {:result (sqrt-iter 1.0 x)
+   :iterations @iterations})
 
 (sqrt 9) ;; => 3.00009155413138
 
