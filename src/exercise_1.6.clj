@@ -41,7 +41,8 @@
 (defn sqrt2 [x]
   (sqrt-iter2 1.0 x))
 
-(sqrt2 9) ;; => Stack Overflor
+(comment
+  (sqrt2 9)) ;; => Stack Overflor
 
 ;; Why StackOverflow ?
 ;;
@@ -49,8 +50,18 @@
 ;; and then the new-if function will be replaced. To see the difference between the if and new-if
 ;; symbols let's evaluate the following:
 
-(if true 1 (/ 1 0)) ;; => 1
-(new-if true 1 (/ 1 0)) ;; => Unhandled `java.lang.ArithmeticException` Divide by zero
+(defmacro new-if-2 [predicate then-clause else-clause]
+  (list 'cond
+    predicate then-clause
+    :else     else-clause))
+
+(macroexpand '(new-if-2 true 1 (/ 1 0)))
+
+(new-if-2 true 1 (/ 1 0))
+
+(comment
+  (if true 1 (/ 1 0)) ;; => 1
+  (new-if true 1 (/ 1 0))) ;; => Unhandled `java.lang.ArithmeticException` Divide by zero
 
 ;; Let's see what happens with the Newton's method implemented in sqrt2 that uses new-if function:
 
