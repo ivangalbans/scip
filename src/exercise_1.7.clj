@@ -5,11 +5,8 @@
 (defn good-enough? [guess next-guest]
   (< (Math/abs (- guess next-guest)) common/EPS))
 
-(defn average [x y]
-  (/ (+ x y) 2))
-
 (defn improve [guess x]
-  (average guess (/ x guess)))
+  (common/average guess (/ x guess)))
 
 (def iterations (atom 0))
 
