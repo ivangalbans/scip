@@ -7,3 +7,6 @@
 
 (defn close? [x1 x2]
   (< (Math/abs (- x1 x2)) common/EPS))
+
+(defn cube [x]
+  (* x x x))
