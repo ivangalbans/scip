@@ -30,3 +30,15 @@
           (smallest-divisor [x]
             (find-divisor x 2))]
     (= n (smallest-divisor n))))
+
+(defn sign [x]
+  (cond
+    (< x 0) -1
+    (> x 0) 1
+    :else 0))
+
+(defn pow [b n]
+  (cond
+    (= n 0) 1
+    (even? n) (square (pow b (/ n 2)))
+    :else (* b (pow b (- n 1)))))
