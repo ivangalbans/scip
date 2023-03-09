@@ -42,3 +42,9 @@
     (= n 0) 1
     (even? n) (square (pow b (/ n 2)))
     :else (* b (pow b (- n 1)))))
+
+(defn accumulate [f initial sequence]
+  (if (empty? sequence)
+    initial
+    (f (first sequence)
+       (accumulate f initial (rest sequence)))))
