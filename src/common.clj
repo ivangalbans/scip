@@ -48,3 +48,9 @@
     initial
     (f (first sequence)
        (accumulate f initial (rest sequence)))))
+
+(defn third [coll]
+  (first (next (next coll))))
+
+(defn fourth [coll]
+  (first (next (next (next coll)))))

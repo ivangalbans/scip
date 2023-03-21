@@ -7,10 +7,10 @@
      (pow 3 b)))
 
 (defn log
-  "Return maximun x such as n divides b^3"
+  "Return maximun x such as n divides b^x"
   [n b]
   (if (= (rem n b) 0)
-    (1 + (log (/ n b) b))
+    (+ 1 (log (/ n b) b))
     0))
 
 (defn car [n] (log n 2))
