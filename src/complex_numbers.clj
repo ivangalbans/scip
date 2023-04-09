@@ -61,7 +61,7 @@
     #complex/rectangular [real imag]))
 
 (defmethod print-method :rectangular
-  [[rep x y] ^Writer out]
+  [[_rep x y] ^Writer out]
   (.write out (str #complex/rectangular [x y])))
 
 (comment

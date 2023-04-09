@@ -27,6 +27,7 @@
       :else (throw (Exception. (format "Unknown operation %s" op))))))
 
 (comment
-  (def polar-number (make-from-real-imag 2 3))
+  (def polar-number (make-from-mag-ang ((make-from-real-imag 2 3) 'magnitude)
+                                       ((make-from-real-imag 2 3) 'angle)))
   (= 2 (polar-number 'real-part))
   (= 3 (polar-number 'imag-part)))
